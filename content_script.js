@@ -4,20 +4,28 @@ console.log('START');
 // check availability of jQuery
 console.log($);
 
+// load jQuery CSS theme
+var theme = document.createElement('link');
+theme.rel = "stylesheet";
+theme.href = "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css";
+document.head.append(theme);
+
 /* == OverSub Element == */
 // Create subtitles element and apply various styles and properties
 // ---------- NOTE: jQuery? :) ----------------------------------------------------------
 var div = document.createElement('div');
 div.id = "ddd";
+div.className = "ui-widget-content";
 
 div.style.backgroundColor = "green";
 div.style.color = "white";
 
 div.style.width = "400px";
 div.style.height = "100px";
+div.style.padding = "0.5em";
 
 div.style.position = "absolute";
-div.style.top = "650px";
+div.style.top = "100px";
 div.style.bottom = "100px";
 div.style.left = "100px";
 div.style.right = "100px";
@@ -60,7 +68,9 @@ function divMove(e){
 }
 */
 
+$('#ddd').resizable();
 $('#ddd').draggable();
+
 
 
 
