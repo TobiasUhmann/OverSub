@@ -3,7 +3,7 @@
 	
 	"name": "OverSub",
 	"description": "blend in subtitle overlays for videos",
-	"version": "0.2",
+	"version": "0.3",
 	
 	"browser_action": {
 		"default_icon": "icon.png",

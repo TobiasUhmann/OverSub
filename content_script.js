@@ -99,7 +99,7 @@ function handleFileSelect(e) {
 	reader.onload = function (e) {
 			console.log("LOADED");
 			var data = e.target.result;
-			alert(data);
+			//alert(data);
 			
 			
 			function toSeconds(t) {
@@ -144,31 +144,62 @@ function handleFileSelect(e) {
 			
 			console.log(subtitles);
 			
+			// time calculation:
+			// time0: timestamp of last resume
+			// deltaT: time delta since time0
+			// totalTime: when video paused -> totalTime += deltaT and time0, deltaT are reset
+			// this means that totalTime + deltaT = video play time (excluding pauses)
+			var totalTime = 0;
 			var time0 = Date.now();
+			var deltaT;
+			var paused = false;
+			
 			setInterval(function() {
-				
-				var deltaT = Date.now() - time0;
-				deltaT /= 1000;
-				var s = deltaT + " # ";
-				for (var i = 0; i < cont; i++) {
-					s += subtitles[i].start + " " + subtitles[i].end + " # ";
-					var ppp = document.getElementById('ppp');
-					if (parseFloat(subtitles[i].start) <= deltaT &&
-							deltaT <= parseFloat(subtitles[i].end)) {
-						ppp.innerText = subtitles[i].text;
-						console.log(deltaT + " #" + i + " "+ subtitles[i].text);
-						//alert(deltaT + " #" + i + " "+ subtitles[i].text);
-						break;
-					} else {
-						console.log("deleting " + subtitles[i].start + " " + deltaT + " " +
-								subtitles[i].end);
-						ppp.innerText = "";
+				if (paused == false) {
+					deltaT = Date.now() - time0;
+					deltaT /= 1000;
+					var s = deltaT + " # ";
+					for (var i = 0; i < cont; i++) {
+						s += subtitles[i].start + " " + subtitles[i].end + " # ";
+						var ppp = document.getElementById('ppp');
+						var playTime = totalTime + deltaT;
+						if (parseFloat(subtitles[i].start) <= playTime &&
+								playTime <= parseFloat(subtitles[i].end)) {
+							ppp.innerText = /*"[" + playTime + "]" + */subtitles[i].text;
+							console.log(deltaT + " #" + i + " "+ subtitles[i].text);
+							//alert(deltaT + " #" + i + " "+ subtitles[i].text);
+							break;
+						} else {
+							//console.log("deleting " + subtitles[i].start + " " + deltaT + " " +
+							//		subtitles[i].end);
+							ppp.innerText = /*"[" + playTime + "]" +*/ "";
+						}
 					}
 				}
 				//alert(s);
-			}, 1000);
+			}, 100);
 			
 			
+			// pause on SPACE
+			// handle keydown instead of keypress to receive the keydown event for SPACE
+			// as the following keypress event will be intercepted by the video player
+			// and not reach $(document)
+			$(document).keydown(function(event) {
+					if (event.which == 32) {
+						console.log("SPACE");
+						if (paused == true) {
+							paused = false;
+							
+							time0 = Date.now();
+							deltaT = 0;
+						} else {
+							paused = true;
+							
+							totalTime += deltaT;
+							
+						}
+					}
+			});
 			
 	}
 	reader.readAsText(files[0]);
