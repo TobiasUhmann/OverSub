@@ -1,20 +1,31 @@
 // -- OverSub Chrome Extension [ALPHA] --
 console.log('START');
 
+// check availability of jQuery
+console.log($);
+
+// load jQuery CSS theme
+var theme = document.createElement('link');
+theme.rel = "stylesheet";
+theme.href = "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css";
+document.head.append(theme);
+
 /* == OverSub Element == */
 // Create subtitles element and apply various styles and properties
 // ---------- NOTE: jQuery? :) ----------------------------------------------------------
 var div = document.createElement('div');
-div.id = "OverSub";
+div.id = "ddd";
+div.className = "ui-widget-content";
 
 div.style.backgroundColor = "green";
 div.style.color = "white";
 
 div.style.width = "400px";
 div.style.height = "100px";
+div.style.padding = "0.5em";
 
 div.style.position = "absolute";
-div.style.top = "650px";
+div.style.top = "100px";
 div.style.bottom = "100px";
 div.style.left = "100px";
 div.style.right = "100px";
@@ -29,7 +40,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 	alert('The File APIs are not fully supported in your browser, sorry.');
 }
 
-
+/*
 window.onload = addListeners;
 
 function addListeners(){
@@ -55,8 +66,10 @@ function divMove(e){
   div.style.top = e.clientY + 'px';
   div.style.left = e.clientX + 'px';
 }
+*/
 
-
+$('#ddd').resizable();
+$('#ddd').draggable();
 
 
 
