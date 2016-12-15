@@ -1,17 +1,11 @@
+// -- OverSub Chrome Extension [ALPHA] --
 console.log('START');
 
-
-
-
+/* == OverSub Element == */
+// Create subtitles element and apply various styles and properties
+// ---------- NOTE: jQuery? :) ----------------------------------------------------------
 var div = document.createElement('div');
-div.id = "ddd";
-
-// Check for the various File API support.
-if (window.File && window.FileReader && window.FileList && window.Blob) {
-	//div.textContent = "MUHHHH";
-} else {
-	alert('The File APIs are not fully supported in this browser.');
-}
+div.id = "OverSub";
 
 div.style.backgroundColor = "green";
 div.style.color = "white";
@@ -28,7 +22,12 @@ div.style.right = "100px";
 document.body.appendChild(div);
 
 
-
+// Check for the various File API support.
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+	//div.textContent = "MUHHHH";
+} else {
+	alert('The File APIs are not fully supported in your browser, sorry.');
+}
 
 
 window.onload = addListeners;
