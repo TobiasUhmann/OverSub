@@ -16,7 +16,7 @@ html, body {
 /* == Subtitles + Buttons == */
 .OverSub-box .main {
 	width: 100%;
-	height: 200px;
+	height: calc(100% - 50px);
 	background-color: #234567;
 	border-top-left-radius: 10px;
 }
@@ -45,6 +45,12 @@ html, body {
 .OverSub-box .main .btn-box .btn-close {
 
 
+}
+
+.OverSub-box .main .subtitles {
+	color: #fff;
+	/*background-color: #456789;*/
+	padding: 10px;
 }
 
 /* == Subtitle Settings == */
