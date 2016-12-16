@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <!-- Main Dialouge Box -->
 <div class="OverSub-box">
@@ -12,13 +15,21 @@
 				X
 			</div>
 		</div>
+		<!-- Show subtitles here -->
+		<div class="subtitles">
+			MY SUBTITLES
+		</div>
 	</div>
 	<!-- Subtitle Settings -->
 	<div class="cfg-subtitles">
-
+		Subtitle Settings
 	</div>
 	<!-- Box Settings (connected to settings button & hidden by default) -->
 	<div class="cfg-box">
-
+		Box Settings
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(".OverSub-box").resizable();
+</script>
