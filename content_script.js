@@ -152,7 +152,7 @@ function handleFileSelect(e) {
 			var totalTime = 0;
 			var time0 = Date.now();
 			var deltaT;
-			var paused = false;
+			var paused = true;
 			
 			setInterval(function() {
 				if (paused == false) {
@@ -165,14 +165,14 @@ function handleFileSelect(e) {
 						var playTime = totalTime + deltaT;
 						if (parseFloat(subtitles[i].start) <= playTime &&
 								playTime <= parseFloat(subtitles[i].end)) {
-							ppp.innerText = /*"[" + playTime + "]" + */subtitles[i].text;
+							ppp.innerText = "[" + playTime + "]" + subtitles[i].text;
 							console.log(deltaT + " #" + i + " "+ subtitles[i].text);
 							//alert(deltaT + " #" + i + " "+ subtitles[i].text);
 							break;
 						} else {
 							//console.log("deleting " + subtitles[i].start + " " + deltaT + " " +
 							//		subtitles[i].end);
-							ppp.innerText = /*"[" + playTime + "]" +*/ "";
+							ppp.innerText = "[" + playTime + "]" + "";
 						}
 					}
 				}

@@ -1,5 +1,5 @@
 1
-00:00:17,385 --> 00:00:21,530
+00:00:01,385 --> 00:00:21,530
 The Simpsons 20x01
 Sex, Pies and Idiot Scrapes
 
