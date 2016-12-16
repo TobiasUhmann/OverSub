@@ -1,13 +1,13 @@
 /* == OverSub-Box Stylesheet == */
 
-/* Development Background Styles */
+/* Development Background Styles (remove this from release css file) */
 html, body {
 	font-family: Helvetica;
 	background-color: #000;
 }
 
 
-/* == Main Box == */
+/* == Main Subtitles Box == */
 .OverSub-box {
 	width: 400px;
 	height: 200px;
@@ -18,7 +18,9 @@ html, body {
 	background-color: #123456;
 }
 
-/* == Subtitles + Buttons == */
+
+
+/* == .main contains: Subtitles + Buttons (settings, close) == */
 .OverSub-box .main {
 	width: 100%;
 	height: calc(100% - 50px);
@@ -26,6 +28,7 @@ html, body {
 	border-top-left-radius: 10px;
 }
 
+/* Container for buttons (settings, close) */
 .OverSub-box .main .btn-box {
 	cursor: default;
 	float: right;
@@ -33,30 +36,30 @@ html, body {
 	border-bottom-left-radius: 10px;
 }
 
+/* Add a sapcer between buttons (currently disabled) */
 .OverSub-box .main .btn-box .btn-close::before {
+	display: none;
 	content: "";
 	position: absolute;
 	height: 100%;
-	display: none;
 	box-shadow: 0 0 1px 1px #000;
 }
 
+/* Close and Settings button */
 .OverSub-box .main .btn-box .btn-settings, .OverSub-box .main .btn-box .btn-close {
 	cursor: pointer;
 	padding: 7px;
 	display: inline-block;
 }
 
-.OverSub-box .main .btn-box .btn-close {
-
-
-}
-
+/* == SUBTITLES -> Default (may be overridden by user) == */
 .OverSub-box .main .subtitles {
 	color: #fff;
 	/*background-color: #456789;*/
 	padding: 10px;
 }
+
+
 
 /* == Subtitle Settings == */
 .OverSub-box .cfg-subtitles {
@@ -66,17 +69,19 @@ html, body {
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
-/* Added/Removed by jQuery | Toggles border-radius */
+/* jQuery: add/remove | -> Toggles border-radius */
 .OverSub-box .cfg-subtitles-open {
 	border-bottom-left-radius: 0px !important;
 	border-bottom-right-radius: 0px !important;
 }
 
-/* == Box Settings == */
+
+
+/* == Box Settings (container underneath the main box) == */
 .OverSub-box .cfg-box {
 	width: 100%;
-	height: 0;/* jQuery: open/close */
 	/*height: 150px;*/
+	height: 0;/* jQuery: open/close */
 	overflow: hidden;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
