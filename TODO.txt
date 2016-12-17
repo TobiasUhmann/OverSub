@@ -1,0 +1,5 @@
+* add timing widgets to below area (current play time & subtitle offset)
+* color picker for background color & opacity
+* font settings (font, size, color)
+* more than one SubBox
+* save preferred setting via Storage API
