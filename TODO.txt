@@ -9,3 +9,4 @@
 + add timing widgets to subtitle settings area (current play time & subtitle offset)
 + add font settings (family, size, color) to subtitle settings area
 + redesign extension menu
++ add fade-in effect to subbox
