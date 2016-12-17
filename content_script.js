@@ -8,7 +8,7 @@ document.head.append(theme);
 // Create subtitles element and apply various styles and properties
 var div = document.createElement('div');
 
-div.style.position = "absolute";
+/*div.style.position = "absolute";
 div.style.width = "400px";
 div.style.height = "100px";
 div.style.padding = "0.5em";
@@ -20,7 +20,53 @@ div.style.backgroundColor = "green";
 div.style.color = "white";
 
 $(div).resizable();
-$(div).draggable();
+$(div).draggable();*/
+
+// load SubBox.html
+chrome.extension.sendRequest({ cmd: "read_file", file: "subtitlesBox/SubBox.html" }, 
+		function (html) {
+	console.log(html);
+	$(div).html(html);
+});
+
+var css = chrome.extension.getURL("subtitlesBox/style.css");
+$("<link rel='stylesheet' type='text/css' href='" + css + "' />").appendTo("head");
+
+// Shorthand for jQuery ready function
+$(function() {
+
+	$(".OverSub-box").resizable();
+	$(".OverSub-box").draggable();
+
+	/* == Button Event Handler == */
+	// Settings (Box)
+	$(".OverSub-box .main .btn-box .btn-settings").click(function() {
+		if($(this).parents(".OverSub-box").children(".cfg-box").hasClass("cfg-box-open")) {
+			$(this).parents(".OverSub-box").children(".cfg-box").animate({
+				height: "0"
+			}, function() {
+				$(this).parents(".OverSub-box").children(".cfg-subtitles").removeClass("cfg-subtitles-open");
+				$(this).parents(".OverSub-box").children(".cfg-box").removeClass("cfg-box-open");
+			});
+			console.log("is now hidden");
+		}else {
+			$(this).parents(".OverSub-box").children(".cfg-subtitles").addClass("cfg-subtitles-open");
+			$(this).parents(".OverSub-box").children(".cfg-box").animate({
+				height: "250"
+			}).addClass("cfg-box-open");
+			console.log("is now visible");
+		}
+		// $(this).parents(".OverSub-box").children(".cfg-box").slideToggle("fast");
+	});
+	// Close (Box)
+	$(".OverSub-box .main .btn-box .btn-close").click(function() {
+		$(this).parents(".OverSub-box").fadeOut("fast", function() {
+			$(this).remove();
+		});
+	});
+
+});
+
 
 document.body.appendChild(div);
 
@@ -126,23 +172,23 @@ function fileLoaded (e) {
 	
 	// check multiple times per second if subtitle needs to be updated
 	setInterval(function() {
-			// no check if video is paused
-			if (paused == false) {
-				deltaT = Date.now() - time0;
-				
-				// iterate through all subtitle element and check if current playTime
-				// is in thats time frame. clear subtitle text field otherwise
-				for (var i = 0; i < count; i++) {
-					var playTime = totalTime + deltaT;
-					if (subtitles[i].start * 1000 <= playTime &&
-							playTime <= subtitles[i].end * 1000) {
-						p.innerText = subtitles[i].text;
-						break;
-					} else {
-						p.innerText = "";
-					}
+		// no check if video is paused
+		if (paused == false) {
+			deltaT = Date.now() - time0;
+			
+			// iterate through all subtitle element and check if current playTime
+			// is in thats time frame. clear subtitle text field otherwise
+			for (var i = 0; i < count; i++) {
+				var playTime = totalTime + deltaT;
+				if (subtitles[i].start * 1000 <= playTime &&
+						playTime <= subtitles[i].end * 1000) {
+					p.innerText = subtitles[i].text;
+					break;
+				} else {
+					p.innerText = "";
 				}
 			}
+		}
 	}, 100);
 			
 			
@@ -151,17 +197,17 @@ function fileLoaded (e) {
 	// as the following keypress event will be intercepted by the video player
 	// and not reach $(document)
 	$(document).keydown(function (event) {
-			if (event.which == 32) {
-				if (paused == true) {
-					paused = false;
-					
-					time0 = Date.now();
-					deltaT = 0;
-				} else {
-					paused = true;
-					
-					totalTime += deltaT;
-				}
+		if (event.which == 32) {
+			if (paused == true) {
+				paused = false;
+				
+				time0 = Date.now();
+				deltaT = 0;
+			} else {
+				paused = true;
+				
+				totalTime += deltaT;
 			}
+		}
 	});		
 }

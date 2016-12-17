@@ -11,6 +11,10 @@
 	},
 	
 	"permissions": [
-    "activeTab"
-  ]
+		"activeTab"
+	],
+	
+	"web_accessible_resources" : [
+		"subtitlesBox/style.css", "subtitlesBox/script.js", "jquery-3.1.1.js"
+	]
 }
