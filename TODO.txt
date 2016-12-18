@@ -10,3 +10,4 @@
 + add font settings (family, size, color) to subtitle settings area
 + redesign extension menu
 + add fade-in effect to subbox
++ add auto fadeout to subtitle box on mouse leave
