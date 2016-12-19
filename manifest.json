@@ -17,7 +17,6 @@
 	"web_accessible_resources" : [
 		"subtitlesBox/SubBox.html",
 		"subtitlesBox/style.css",
-		"subtitlesBox/script.js", 
 		"jquery-3.1.1.js"
 	]
 }

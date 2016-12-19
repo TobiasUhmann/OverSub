@@ -1,4 +1,5 @@
 // Shorthand for jQuery ready function
+console.log(document.head);
 $(function() {
 
 	$(".OverSub-box").resizable();

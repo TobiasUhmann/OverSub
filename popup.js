@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			chrome.tabs.executeScript(null, { file: "jquery-ui.js" }, function() {
 				console.log('jQuery-ui loaded');
 				chrome.tabs.executeScript(null, { file: 'content_script.js' });
+				chrome.tabs.executeScript(null, { file: 'subtitlesBox/script.js' });
 				//window.close();
 			});
 		});
