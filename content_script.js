@@ -1,40 +1,29 @@
 /* == load jQuery CSS theme == */
-var theme = document.createElement('link');
-theme.rel = "stylesheet";
-theme.href = "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css";
-document.head.append(theme);
+console.log("load jQuery theme");
+var themeURL = "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css";
+$("<link rel='stylesheet' type='text/css' href='" + themeURL + "' />").appendTo(document.head);
 
-/* == OverSub Element == */
-// Create subtitles element and apply various styles and properties
-var div = document.createElement('div');
+/* == load OverSub Element == */
+loadHTML();
 
-/*div.style.position = "absolute";
-div.style.width = "400px";
-div.style.height = "100px";
-div.style.padding = "0.5em";
+function loadHTML () {
+	console.log("loadHTML");
+	var htmlURL = chrome.extension.getURL("subtitlesBox/SubBox.html");
+	$.ajax({ url: htmlURL, dataType: "html", success: function (htmlString) {
+		$(htmlString).appendTo(document.body);
+		loadCSS();
+	} });
+}
 
-div.style.top = "100px";
-div.style.left = "100px";
+function loadCSS () {
+	console.log("loadCSS");
+	var cssURL = chrome.extension.getURL("subtitlesBox/style.css");
+	$("<link rel='stylesheet' type='text/css' href='" + cssURL + "' />").appendTo("head");
+	loadJS();
+}
 
-div.style.backgroundColor = "green";
-div.style.color = "white";
-
-$(div).resizable();
-$(div).draggable();*/
-
-// load SubBox.html
-chrome.extension.sendRequest({ cmd: "read_file", file: "subtitlesBox/SubBox.html" }, 
-		function (html) {
-	console.log(html);
-	$(div).html(html);
-});
-
-var css = chrome.extension.getURL("subtitlesBox/style.css");
-$("<link rel='stylesheet' type='text/css' href='" + css + "' />").appendTo("head");
-
-// Shorthand for jQuery ready function
-$(function() {
-
+function loadJS () {
+	console.log("loadJS");
 	$(".OverSub-box").resizable();
 	$(".OverSub-box").draggable();
 
@@ -64,12 +53,9 @@ $(function() {
 			$(this).remove();
 		});
 	});
+}
 
-});
-
-
-document.body.appendChild(div);
-
+/*
 var input = document.createElement('input');
 input.type = "file";
 div.appendChild(input);
@@ -78,6 +64,7 @@ var p = document.createElement('p');
 div.appendChild(p);
 
 $(input).change(handleFileSelect);
+*/
 
 function handleFileSelect(e) {
 	// hide <input> after file selection
