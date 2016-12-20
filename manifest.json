@@ -3,7 +3,7 @@
 	
 	"name": "OverSub",
 	"description": "blend in subtitle overlays for videos",
-	"version": "0.3",
+	"version": "0.4",
 	
 	"browser_action": {
 		"default_icon": "icon.png",
@@ -15,8 +15,6 @@
 	],
 	
 	"web_accessible_resources" : [
-		"subtitlesBox/SubBox.html",
-		"subtitlesBox/style.css",
-		"jquery-3.1.1.js"
+		"content/SubBox/SubBox.*"
 	]
 }

@@ -1,6 +1,6 @@
 // Shorthand for jQuery ready function
 console.log(document.head);
-$(function() {
+$(function () {
 
 	$(".OverSub-box").resizable();
 	$(".OverSub-box").draggable();

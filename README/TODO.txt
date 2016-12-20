@@ -1,0 +1,21 @@
+FEATURES
+
+* when the mouse is not over the SubBox only the text should be visible. The windows buttons and the play time bar should be hidden in that case
+* widgets for changing the settings of a SubBox have to be added to the extendable settings area of the SubBox. The settings should include: background-color, font (family, size, color), transparency
+* The user shall be able the configuration of his SubBoxes in a named configuration that he can load when visiting the website later again. The selection UI shall be provided in the extension popup (popup.html)
+* the user should be able to resize the SubBox on all edges, not just with the right and bottom one
+* the play time bar has to be added to the SubBox allowing the user to manually synchronize the play time (e.g. after skipping some part of the video) and the coarse and fine offset between the video and the subtitle
+* create some fancy icons that present the different possibilites to load .srt files: upload from local drive, drag and drop into drop area, search online database
+* implement online search for subtitles
+* detect video player to automatically synchronize player and SubBox when changing play time in the player or the SubBox
+* let the user maually bind SubBoxes with each other and the player and visualize that binding
+* provide subtitle injection into video player if detected player is capable of that
+
+BUGS
+
+* resizing later added SubBoxes affects earlier added ones
+* page background becomes black when using OverSub
+
+PERFORMANCE
+
+* somehow avoid looping through all subtitle elements every 100ms to check if it should be displayed
